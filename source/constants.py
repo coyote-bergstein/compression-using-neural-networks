@@ -8,9 +8,9 @@ OPTIMIZER = 'adam'
 LOSS = 'mse'
 
 
-AUDIO_SAMPLE_RATE = 22050
-N_FFT = 2048  # Define the FFT window size to reduce frequency bins
+AUDIO_SAMPLE_RATE = 16000
+N_FFT = 2048 // 4  # Define the FFT window size to reduce frequency bins
 HOP_LENGTH = N_FFT // 4  # Define the hop length (adjust as needed)
-TRACK_DURATION = 10 # seconds
+TRACK_DURATION = 1 # seconds
 MAX_AUDIO_LENGTH = AUDIO_SAMPLE_RATE * TRACK_DURATION
 WINDOW = "hann"
