@@ -26,6 +26,7 @@ def generate_spectrogram(signal: np.array, hop_length: int, frame_size: int) -> 
                                        pad_mode='reflect',
                                        power=2.0)
     # n_mels=128)
+    S = librosa.power_to_db(S, ref=np.max)
     return S
 
 
@@ -40,6 +41,7 @@ def show_spectrogram(S: np.array, hop_length: int, frame_size: int, sample_rate:
 
 def reconstruct_audio(S: np.array, hop_length: int, frame_size: int) -> np.array:
     # y_reconstructed = librosa.istft(S, hop_length=hop_length, n_fft=frame_size, window=WINDOW) # OLD METHOD
+    S = librosa.db_to_power(S, ref=1.0)
     y_reconstructed = librosa.feature.inverse.mel_to_audio(S,
                                                            sr=AUDIO_SAMPLE_RATE,
                                                            n_fft=frame_size,
