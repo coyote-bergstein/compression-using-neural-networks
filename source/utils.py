@@ -17,7 +17,7 @@ def normalize_standard(audio):
     return audio_normalized, mean, std
 
 
-def generate_spectrogram(signal: np.array, sr: int, hop_length: int, frame_size: int, win_length: int, window: str, center: bool, pad_mode: str, power: float) -> np.array:
+def generate_spectrogram(signal: np.array, sr: int, hop_length: int, frame_size: int, win_length: int, window: str, center: bool, pad_mode: str, power: float, n_mels: int) -> np.array:
     # S = np.abs(librosa.stft(signal, hop_length=hop_length, n_fft=frame_size, window=WINDOW)) # OLD METHOD
     S = librosa.feature.melspectrogram(y=signal,
                                        sr=sr,
@@ -27,8 +27,8 @@ def generate_spectrogram(signal: np.array, sr: int, hop_length: int, frame_size:
                                        window=window,
                                        center=center,
                                        pad_mode=pad_mode,
-                                       power=power)
-    # n_mels=128)
+                                       power=power,
+                                       n_mels=n_mels)
     S = librosa.power_to_db(S, ref=np.max)
     return S
 

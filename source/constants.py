@@ -1,15 +1,17 @@
-BATCH_SIZE = 32
-NUM_BATCHES = 4
-TRAIN_DS_SIZE = NUM_BATCHES * BATCH_SIZE
-EPOCHS = 1
-LATENT_DIM = 128
+DESIRED_SHAPE = (128, 128)
+
+
+BATCH_SIZE = 256
+MAX_EPOCHS = 50
 LEARING_RATE = 0.00005
 OPTIMIZER = 'adam'
 LOSS = 'mse'
 
 AUDIO_SAMPLE_RATE = 16000
-N_FFT = 2048 // 4  # Define the FFT window size to reduce frequency bins
-HOP_LENGTH = N_FFT // 4  # Define the hop length (adjust as needed)
+N_FFT = 512
+TRACK_LENGTH = 1
+HOP_LENGTH = AUDIO_SAMPLE_RATE * TRACK_LENGTH // DESIRED_SHAPE[1]  # Define the hop length (adjust as needed)
+N_MELS = DESIRED_SHAPE[0]
 TRACK_DURATION = 1 # seconds
 MAX_AUDIO_LENGTH = AUDIO_SAMPLE_RATE * TRACK_DURATION
 WINDOW = "hann"
